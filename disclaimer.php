@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Disclaimer
+Plugin Name: Disclaimer Affiliates
 Description: Este plugin añade un texto de forma automática al final de todas las entradas de WordPress enlazando al descargo de responsabilidad de afiliados.
 Version: 1.0
 Author: Juanma Aranda
@@ -13,8 +13,8 @@ Text Domain: disclaimer
 // Añadimos un panel de control en el menú de ajustes de WordPress
 function disclaimer_add_options_page() {
 	add_options_page(
-		'Disclaimer',
-		'Disclaimer',
+		'Disclaimer Affiliates',
+		'Disclaimer Affiliates',
 		'manage_options',
 		'disclaimer',
 		'disclaimer_options_page'
