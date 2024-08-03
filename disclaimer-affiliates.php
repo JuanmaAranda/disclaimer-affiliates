@@ -102,7 +102,7 @@ return $output;
 function disclaimer_add_meta_box() {
 add_meta_box(
 'disclaimer_meta_box',
-'Disclaimer',
+'Disclaimer Affiliates',
 'disclaimer_meta_box_render',
 array( 'post', 'coupon' ),
 'side',
