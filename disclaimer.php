@@ -4,10 +4,11 @@ Plugin Name: Disclaimer
 Description: Este plugin añade un texto de forma automática al final de todas las entradas de WordPress enlazando al descargo de responsabilidad de afiliados.
 Version: 1.0
 Author: Juanma Aranda
-Author URI: https://juanmaaranda.com/
+Author URI: https://wpnovatos.com/
 License: GPLv2 or later
 Text Domain: disclaimer
 */
+
 
 // Añadimos un panel de control en el menú de ajustes de WordPress
 function disclaimer_add_options_page() {
@@ -110,7 +111,7 @@ array( 'post', 'coupon' ),
 }
 add_action( 'add_meta_boxes', 'disclaimer_add_meta_box' );
 
-// Mostramos el texto y enlazamos la expresión "escargo de responsabilidad de este sitio" a la página de descargo de responsabilidad seleccionada en el panel de control del plugin
+// Mostramos el texto y enlazamos la expresión "Descargo de responsabilidad de este sitio" a la página de descargo de responsabilidad seleccionada en el panel de control del plugin
 function disclaimer_meta_box_render( $post ) {
 $options = get_option( 'disclaimer_settings' );
 $selected_page = ( isset( $options['page'] ) ) ? $options['page'] : '';
@@ -140,6 +141,8 @@ update_post_meta( $post_id, '_disclaimer_checkbox', 0 );
 }
 add_action( 'save_post', 'disclaimer_save_meta_box_data' );
 
+
+
 // Añadimos el texto de Disclaimer al final de todas las entradas y en las entradas tipo "coupon" cuando se ha activado el selector en las preferencias generales de cada entrada
 function disclaimer_the_content( $content ) {
 if ( is_singular( array( 'post', 'coupon' ) ) ) {
@@ -148,7 +151,7 @@ $selected_page = ( isset( $options['page'] ) ) ? $options['page'] : '';
 $font_size = ( isset( $options['font_size'] ) ) ? $options['font_size'] : '14';
 if ( get_post_meta( get_the_ID(), '_disclaimer_checkbox', true ) && ! empty( $selected_page ) ) {
 $disclaimer_url = get_permalink( $selected_page );
-$disclaimer_text = '<p style="font-size: ' . esc_attr( $font_size ) . 'px;"><br><strong>Disclaimer</strong>: Este artículo puede contener uno o varios enlaces de afiliado. Para más información, consulta el <a href="' . esc_url( $disclaimer_url ) . '">descargo de responsabilidad de este sitio</a>.</p>';
+$disclaimer_text = '<div style="border: 1px solid #000; padding: 10px; font-size: ' . esc_attr( $font_size ) . 'px;"><strong>Disclaimer</strong>: Esta publicación puede contener uno o varios enlaces de afiliado. Para más información, consulta el <a href="' . esc_url( $disclaimer_url ) . '">descargo de responsabilidad de este sitio</a>.</div>';
 $content .= $disclaimer_text;
 }
 }
