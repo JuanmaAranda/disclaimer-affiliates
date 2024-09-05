@@ -165,18 +165,18 @@ disclaimer_add_options_page();
 disclaimer_register_settings();
 flush_rewrite_rules();
 }
-register_activation_hook( FILE, 'disclaimer_activate' );
+register_activation_hook( __FILE__, 'disclaimer_activate' );
 
 // Desactivamos el plugin
 function disclaimer_deactivate() {
 flush_rewrite_rules();
 }
-register_deactivation_hook( FILE, 'disclaimer_deactivate' );
+register_deactivation_hook( __FILE__, 'disclaimer_deactivate' );
 
 // Desinstalamos el plugin
 function disclaimer_uninstall() {
 delete_option( 'disclaimer_settings' );
 }
-register_uninstall_hook( FILE, 'disclaimer_uninstall' );
+register_uninstall_hook( __FILE__, 'disclaimer_uninstall' );
 
 ?>
